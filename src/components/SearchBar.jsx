@@ -5,10 +5,9 @@ import { TaskContext } from "../context/TaskContext";
 function SearchBar() {
   const [query, setQuery] = useState("");
 
-  function handleSearch(e) {
-    setQuery(e.target.value);
+  function handleSearch(event) {
+    setQuery(event.target.value);
   }
-
 
   return (
     <div>
