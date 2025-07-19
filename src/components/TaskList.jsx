@@ -7,7 +7,7 @@ function TaskList({ query }) {
   
   // This will dynamically filter tasks based on user search input
   const filteredTasks = tasks.filter(task =>
-    task.title.toLowerCase().includes(query.toLowerCase())
+    task.title?.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
