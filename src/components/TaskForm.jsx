@@ -9,10 +9,18 @@ function TaskForm() {
     if (taskName.trim() === "") return;
     setTaskName("");
   }
+  // generate a unique id for the input field
+  const inputID = useId();
+
+  // use useEffect to focus the input field when the component mounts
+  useEffect(() => {
+    inputId.current.focus();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>New Task:</label>
+      {/* use the generated id in the label */}
+      <label htmlFor={inputID}>New Task:</label>
       <input
         type="text"
         value={taskName}
