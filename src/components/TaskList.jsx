@@ -1,10 +1,11 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
 
 function TaskList({ query }) {
-    
+  // this will pull the current list of tasks and also the completed toggle function from the shared context!
   const { tasks, toggleComplete } = useContext(TaskContext);
   
+  // This will dynamically filter tasks based on user search input as they type
   const filteredTasks = tasks.filter(task =>
     task.title.toLowerCase().includes(query.toLowerCase())
   );
