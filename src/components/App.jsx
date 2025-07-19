@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     fetch('http://localhost:6001/tasks')
-    .then(r=>r.json())
+    .then(response=>response.json())
     .then(data=>setTasks(data))
     
   }, []);
