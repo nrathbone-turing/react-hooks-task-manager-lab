@@ -1,135 +1,93 @@
-# Lab: Task Manager
+# Task Manager App
+A simple React application for managing tasks.
 
-## Overview
-In this lab, we’ll build a Task Manager application that allows users to add, complete, and search tasks. Utilizing the hooks of `useRef` to persist values without re-rendering, `useId` to generate unique IDs for accessibility and controlled components, and `useContext` for global state management.
+Users can add new tasks, mark them as complete or incomplete, and search through the list of tasks; task data is persisted via a local JSON server.
 
-## Task 1: Define the Problem
-The frontend is set up, but the application lacks interactivity and state management.
+---
 
-As a user, I should be able to:
-- Add a new task using a form (`useId`)
-- Mark tasks as completed (`useContext`)
-- Search tasks dynamically (`useRef`)
+## Features
+- Add new tasks
+- Toggle task completion
+- Search and filter tasks in real-time
+- Fetch and persist tasks via JSON server
+- Global state management using React Context API
 
-## Task 2: Determine the Design
-Determine state and props needed for each component:
-- Global states (`useContext`)
-- Persistent Values (`useRef`)
-- Unique IDs (`useId`)
+---
 
-## Task 3: Develop the Code
-### Implement Global State with `useContext`
-- Create `TaskProvider` as global state within `TaskContext.jsx`
-- Replace tasks state in app with context
+## Tech Stack
 
-### Mark Task
-- Implement `toggleComplete` function within `TaskContext.jsx`
-- Call `toggleComplete` upon clicking task button
+- React
+- React Context API
+- React Hooks (`useState`, `useEffect`, `useContext`, `useRef`, `useId`)
+- JSON Server (mock API)
+- Testing with Vitest and React Testing Library
 
-### Submit Tasks
-- Apply `useId` on form input
-- Implement `addTask` function within `TaskContext.jsx`
-- Call `addTask` within submit
+## Notes
+- Tasks are stored and retrieved from `http://localhost:6001/tasks`
+- Context is used to avoid prop drilling and allow components to access task-related state and functions globally
 
-### Implement Search Functionality
-- Implement `useRef` on search input
-- Implement filter on task context
+---
 
-## Task 4: Test and Refine
-Debug and test during development using the provided test suite and React DevTools in Chrome.
-
-## Task 5: Document and Maintain
-- Commit as you go, writing meaningful commit messages
-- Push commit history to GitHub periodically and when lab is complete
-
-## Tools and Resources
-- GitHub Repo: 
-- `useRef`: [React useRef](https://react.dev/reference/react/useRef)
-- `useContext`: [React useContext](https://react.dev/reference/react/useContext)
-- `useId`: [React useId](https://react.dev/reference/react/useId)
-
-## Instructions
-### Set Up
-Before we begin coding, let's complete the initial setup for this lesson:
-
-#### Fork and Clone
-- Go to the provided GitHub repository link.
-- Fork the repository to your GitHub account.
-- Clone the forked repository to your local machine.
-
-#### Open and Run File
-- Open the project in VSCode.
-- Run `npm install` to install all necessary dependencies.
-
-## Instructions
-### Task 1: Define the Problem
-The frontend is set up, but the application lacks interactivity and state management.
-
-As a user, I should be able to:
-- Add a new task using a form (`useId`)
-- Mark tasks as completed (`useContext`)
-- Search tasks dynamically (`useRef`)
-
-### Task 2: Determine the Design
-Determine state and props needed for each component.
-
-### Task 3: Develop, Test, and Refine the Code
-#### Open React application in browser
-```sh
+## Installation & Setup
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd task-manager
+```
+2. Install dependencies:
+```bash
+npm install
+```
+3. Start the JSON server:
+```bash
+npx json-server --watch db.json --port 6001
+```
+4. Start the React app:
+```bash
 npm run dev
 ```
 
-#### Run the included backend
-```sh
-npm run server
-```
-
-#### Run test suite
-```sh
+### Run Tests
+```bash
 npm run test
 ```
 
-### Create feature branch
-#### Implement Global State with `useContext`
-- Create `TaskProvider` as global state within `TaskContext.jsx`
-- Replace tasks state in app with context
-- Update `App` within `main.jsx` to be wrapped in `TaskProvider`
+### File Structure
+```css
+src/
+├── components/
+│   ├── App.jsx
+│   ├── TaskForm.jsx
+│   ├── TaskList.jsx
+│   └── SearchBar.jsx
+├── context/
+│   └── TaskContext.jsx
+├── __tests__/
+│   └── App.test.jsx
+├── index.css
+└── main.jsx
+```
 
-#### Mark Task
-- Implement `toggleComplete` function within `TaskContext.jsx`
-- Ensure `toggleComplete` function edits both the `db.json` and page
-- Call `toggleComplete` upon clicking task button
+## Future Ideas (Stretch Goals)
+- Add user authentication
+- Introduce a theme toggle (light/dark mode), maybe also with a parchment texture or color/style
+- Persist completed task status in local storage
+- Add due dates or priorities and categories
+- Add the ability to drag and drop to reorder tasks
+- Add an embedded pomodoro timer functionality
+- Add a graphical indicator besides crossing it out when a task is completed (yay dopamine!)
+- Find a way to add a version of this [Anya pointing image](https://images.gamebanana.com/img/ico/sprays/627d932c150ba.png) to quickly identify and separate visuall the current task with the highest priority
 
-#### Submit Tasks
-- Apply `useId` on form input
-- Implement `addTask` function within `TaskContext.jsx`
-- Call `addTask` within submit
+## About This Repo
 
-#### Implement Search Functionality
-- Implement `useRef` on search input
-- Implement filter task context on `TaskList`
+### Author
+Nick Rathbone
+[GitHub Profile](https://github.com/nrathbone-turing)
 
-### Push feature branch and open a PR on GitHub
-- Merge to main
+*Note: This project is part of the Flatiron React Module lab/assessment*
 
-## Task 4: Document and Maintain
-### Best Practice documentation steps:
-- Add comments to code to explain purpose and logic
-- Clarify intent/functionality of code to other developers
-- Add screenshot of completed work included in Markdown in `README.md`
-- Update `README.md` text to reflect the functionality of the application following [Make a README](https://makeareadme.com)
-- Delete any stale branches on GitHub
-- Remove unnecessary/commented-out code
-- If needed, update `.gitignore` to remove sensitive data
+### License
+MIT — feel free to use or remix!
 
-## Submission
-Once all tests are passing and working code is pushed to the GitHub main branch, submit your GitHub repo through Canvas using CodeGrade.
-
-## Grading Criteria
-The application passes all test suites.
-
-Ensure the application:
-- Loads tasks with context.
-- Submits new task with `useId`
-- Marks tasks as complete.
-- Filters tasks shown on the page by a search input.
+### Demo
+[Include a screenshot or short GIF of the app in action]()
