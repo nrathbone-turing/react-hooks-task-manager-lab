@@ -20,6 +20,7 @@ describe("Task Manager App", () => {
 
   test("adds a new task when the form is submitted", async () => {
     global.setFetchResponse(global.baseTasks)
+    
     let { getByText,getByPlaceholderText } = render(
       <TaskProvider>
         <App />
@@ -29,7 +30,19 @@ describe("Task Manager App", () => {
     const input = getByPlaceholderText("Add a new task...");
     const button = getByText("Add Task");
 
+    const fetchSpy = vi.spyOn(global, "fetch");
+    
     fireEvent.change(input, { target: { value: "Walk the dog" } });
+
+    fetchSpy.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        id: 3,
+        title: "Walk the dog",
+        completed: false,
+      }),
+    });
+    
     fireEvent.click(button);
 
     await waitFor(() => {
@@ -62,14 +75,14 @@ describe("Task Manager App", () => {
         <App />
       </TaskProvider>
     );
+
     const button =  await findAllByTestId("1")
-    global.setFetchResponse([{
-        "id": 1,
-        "name": "Woody",
-        "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-        "likes": 8
-    }])
-    
+   
+    global.setFetchResponse({
+      id: 1,
+      title: "Buy groceries",
+      completed: true,
+    });
     
     await waitFor(() => {
         fireEvent.click(button[0]);
