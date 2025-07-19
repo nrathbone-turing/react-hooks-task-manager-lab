@@ -5,7 +5,7 @@ function TaskList({ query }) {
   // this will pull the current list of tasks and also the completed toggle function from the shared context!
   const { tasks, toggleComplete } = useContext(TaskContext);
   
-  // This will dynamically filter tasks based on user search input as they type
+  // This will dynamically filter tasks based on user search input
   const filteredTasks = tasks.filter(task =>
     task.title.toLowerCase().includes(query.toLowerCase())
   );

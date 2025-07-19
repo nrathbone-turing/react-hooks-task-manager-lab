@@ -5,6 +5,7 @@ import { TaskContext } from "../context/TaskContext";
 function SearchBar() {
   const [query, setQuery] = useState("");
 
+  // This is the piece that updates the local query state every time the user types in the search input!
   function handleSearch(event) {
     setQuery(event.target.value);
   }
@@ -17,6 +18,7 @@ function SearchBar() {
         value={query}
         onChange={handleSearch}
       />
+      {/* Pass the search query down to filter the list in TaskList */}
       <TaskList query={query}/>
     </div>
   );
