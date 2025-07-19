@@ -42,7 +42,3 @@ export function TaskProvider({ children }) {
         </TaskContext.Provider>
     );
 }
-
-export function addTask() {
-
-}
